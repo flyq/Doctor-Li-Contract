@@ -1,4 +1,4 @@
-pragma solidity ^0.6.0;
+pragma solidity ^0.5.13;
 
 /**
  * @dev ERC20200206, another Non-Fungible Token Standard interface, JUST for Doctor Li
@@ -6,35 +6,34 @@ pragma solidity ^0.6.0;
  * https://shimo.im/docs/rW99CpvkTVxGwcV6
  * https://ipfs.io/ipfs/QmQZC741wpPjDNWJnMDMxFjsBnxsvXSBAVwSmSwXTJfv8z
  */
-abstract contract ERC20200206  {
+contract ERC20200206  {
     event Mint(
         address indexed _from,
         address indexed _to,
         uint256 indexed _tokenId
     );
 
-    function name() external virtual view returns (string memory _name);
-    function symbol() external virtual view returns (string memory _symbol);
+    function name()   external view returns (string memory _name);
+    function symbol() external view returns (string memory _symbol);
 
-    function totalSupply() public virtual view returns (uint256);
-    function exists(uint256 _tokenId) public virtual view returns (bool _exists);
-    function minerOf(uint256 _tokenId) public virtual view returns (address _miner);
-    function ownerOf(uint256 _tokenId) public virtual view returns (address _owner);
-    function tokenURI(uint256 _tokenId) public virtual view returns (string memory _uri);
+    function totalSupply() public view returns (uint256);
+    function exists(uint256 _tokenId) public view returns (bool _exists);
+    function minerOf(uint256 _tokenId) public view returns (address _miner);
+    function ownerOf(uint256 _tokenId) public view returns (address _owner);
+    function tokenURI(uint256 _tokenId) public view returns (string memory _uri);
 
-    function amountOf(address _miner) public virtual view returns (uint256 _amount);
+    function amountOf(address _miner) public view returns (uint256 _amount);
     function tokenOfMinerByIndex(
         address _miner,
         uint256 _index
     )
         public
-        virtual
         view
         returns (uint256 _tokenId);
-    function tokenByIndex(uint256 _index) public virtual view returns (uint256 _tokenId);
+    function tokenByIndex(uint256 _index) public view returns (uint256 _tokenId);
 
-    function setTokenURI(uint256 _tokenId, string memory _uri) public virtual;
-    function mint(string memory _uri) public virtual;
+    function setTokenURI(uint256 _tokenId, string memory _uri) public;
+    function mint(string memory _uri) public;
 }
 
 contract NFT {
@@ -273,7 +272,7 @@ contract NFT {
      * @dev public function to revert eth transfer to this contract.
      * Reverts if any eth transfer to this contract
      */
-    receive() external payable {
+    function() external payable {
         revert();
     }
 
